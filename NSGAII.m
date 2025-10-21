@@ -192,7 +192,7 @@ bestsolution = Mejor_Sol(x,:);
 
 Solution = [bestsolution bestsolution1 Mediamejorsol PorcentDesSol MediaTime];
 
-save NSGAII_Experimental
+save results/NSGAII_Experimental
 
 
 %% ===================== FUNCIONES AUXILIARES =====================

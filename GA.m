@@ -61,7 +61,7 @@ PorcentDesSol =100*StdBest/MeanBest;
 Solution=[bestsolution bestsolution1 MeanBest PorcentDesSol MediaTime];
 
 report_conver=report_conver_all;
-save GA_Experimental Mejor_Sol BestObj Ploss_min Times Solution report_conver
+save results/GA_Experimental Mejor_Sol BestObj Ploss_min Times Solution report_conver
 
 %% helpers
 function [c1,c2]=sbx(p1,p2,lb,ub,eta)

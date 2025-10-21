@@ -1,17 +1,15 @@
 %% RUNNER ROBUSTO: ejecuta todos los algoritmos metaheurísticos
-% Daniel Sanín – 2025
-
 clear; clc;
 
 %% --- CONFIGURACIÓN GLOBAL ---
 cfg = struct();
-cfg.objfun_name = 'funcion_pid'; % nombre de la función objetivo
+cfg.objfun_name = 'function_leader_follower'; % nombre de la función objetivo
 cfg.Nv          = 3;                                % número de variables
-cfg.xmin        = deg2rad([-180 -180 -180]);
-cfg.xmax        = deg2rad([ 180  180  180]);
+cfg.xmin        = deg2rad([0 0 0]);
+cfg.xmax        = deg2rad([10  10  10]);
 
 % Corridas e iteraciones
-cfg.T           = 4;     % número de corridas por algoritmo
+cfg.T           = 100;     % número de corridas por algoritmo
 cfg.tmax        = 10;   % iteraciones máximas
 cfg.iterno      = 1;    % paciencia sin mejora 
 
@@ -38,6 +36,10 @@ end
 %% --- Carpeta de logs ---
 logdir = fullfile(workdir,'logs_run_all');
 if ~exist(logdir,'dir'), mkdir(logdir); end
+
+%% --- Carpeta de resultados ---
+resdir = fullfile(workdir,'results');
+if ~exist(resdir,'dir'), mkdir(resdir); end
 
 %% --- Detectar soporte de -batch ---
 hasBatch = ~verLessThan('matlab','9.6'); % 9.6 = R2019a
@@ -70,9 +72,9 @@ for i = 1:numel(algos)
     elapsed = toc(t0);
 
     % Archivo de salida esperado
-    expectedOut = [algo '_Experimental.mat'];
+    expectedOut = ['results/' algo '_Experimental.mat'];
     if ~exist(expectedOut,'file')
-        D = dir('*_Experimental.mat');
+        D = dir('results/*_Experimental.mat');
         if ~isempty(D)
             [~,idxNew] = max([D.datenum]);
             expectedOut = D(idxNew).name;
@@ -100,7 +102,7 @@ for i = 1:numel(results)
     fprintf('%-8s | %-8s | %6.1f s | %s\n', results(i).algo, tag, results(i).elapsed, results(i).outfile);
 end
 
-save('run_all_summary.mat','results');
+save('results/run_all_summary.mat','results');
 fprintf('\nSaved summary to run_all_summary.mat\n');
 
 %% --- Funciones auxiliares ---

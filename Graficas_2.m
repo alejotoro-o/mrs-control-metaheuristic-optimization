@@ -6,7 +6,7 @@ clear; clc;
 
 %% ------------------ File discovery ------------------
 prettyName = @(s) strrep(strrep(s,'_Experimental.mat',''),'_','-');
-files = dir('*_Experimental.mat');
+files = dir('results/*_Experimental.mat');
 if isempty(files)
     error('No *_Experimental.mat files found in the current folder.');
 end
@@ -27,7 +27,7 @@ Conv_all   = cell(K,1);   % each cell: convergence matrix [iters x runs]
 Conv_names = strings(0,1);
 
 for k = 1:K
-    S = load(files(k).name);
+    S = load(fullfile(files(k).folder, files(k).name));
     names(k) = prettyName(files(k).name);
 
     hasSolution = isfield(S,'Solution')   && ~isempty(S.Solution);
@@ -223,11 +223,11 @@ fprintf('\nKruskal–Wallis (Final Objective): p = %.3g (chi2 = %.3f, df = %d)\n
 fprintf('Kruskal–Wallis (Time):            p = %.3g (chi2 = %.3f, df = %d)\n', KW_T_p,  KW_T_stats.chi2,  KW_T_stats.df);
 
 % Export CSVs
-writetable(Summary, 'summary_algorithms.csv');
-writetable(PairsFO, 'pairwise_objective_pvalues_FDR.csv');
-writetable(DeltaFO, 'pairwise_objective_cliffs_delta.csv');
-writetable(PairsT,  'pairwise_time_pvalues_FDR.csv');
-writetable(DeltaT,  'pairwise_time_cliffs_delta.csv');
+writetable(Summary, 'results/summary_algorithms.csv');
+writetable(PairsFO, 'results/pairwise_objective_pvalues_FDR.csv');
+writetable(DeltaFO, 'results/pairwise_objective_cliffs_delta.csv');
+writetable(PairsT,  'results/pairwise_time_pvalues_FDR.csv');
+writetable(DeltaT,  'results/pairwise_time_cliffs_delta.csv');
 
 fprintf('\nSaved CSVs:\n  - summary_algorithms.csv\n  - pairwise_objective_pvalues_FDR.csv\n  - pairwise_objective_cliffs_delta.csv\n  - pairwise_time_pvalues_FDR.csv\n  - pairwise_time_cliffs_delta.csv\n');
 

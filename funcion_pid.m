@@ -1,11 +1,3 @@
-%% PRUEBA
-% clear
-% clc
-%
-% Example: test PID params
-% var = [5, 1, 0.1];   % [Kp, Ki, Kd]
-% error = funcionPID_segundo_orden(var)
-
 function [error_f] = funcion_pid(var)
 % Funcion objetivo para sintonizar un PID en un sistema de 2º orden
 % var = [Kp, Ki, Kd]
