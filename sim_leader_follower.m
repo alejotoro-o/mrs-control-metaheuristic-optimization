@@ -66,8 +66,8 @@ function dydt = dynamics(t,y,K,d_goal,alpha_goal,leader_input)
 
     % Leader parameters (circular trajectory)
     u_l = leader_input;
-    u_l_G = [u_l(1)*cos(q1(3));
-           u_l(2)*sin(q1(3));
+    u_l_G = [u_l(1)*cos(q1(3)) - u_l(2)*sin(q1(3));
+           u_l(1)*sin(q1(3)) + u_l(2)*cos(q1(3));
            u_l(3)];
 
     % Leader dynamics

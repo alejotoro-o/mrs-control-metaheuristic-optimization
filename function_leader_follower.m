@@ -56,9 +56,9 @@ function dydt = dynamics(t,y,K,d_goal,alpha_goal)
     v_y = 0.0;             % Linear velocity in y [m/s]
     w = 0.1;               % velocidad angular [rad/s]
     u_l = [v_x; v_y; w];
-    u_l_G = [v_x*cos(q1(3));
-           v_x*sin(q1(3));
-           w];
+    u_l_G = [u_l(1)*cos(q1(3)) - u_l(2)*sin(q1(3));
+           u_l(1)*sin(q1(3)) + u_l(2)*cos(q1(3));
+           u_l(3)];
 
     % Leader dynamics
     dq1 = [u_l_G(1);

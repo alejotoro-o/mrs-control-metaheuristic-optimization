@@ -9,8 +9,8 @@ cfg.xmin        = deg2rad([0 0 0]);
 cfg.xmax        = deg2rad([10  10  10]);
 
 % Corridas e iteraciones
-cfg.T           = 100;     % número de corridas por algoritmo
-cfg.tmax        = 10;   % iteraciones máximas
+cfg.T           = 10;     % número de corridas por algoritmo
+cfg.tmax        = 1000;   % iteraciones máximas
 cfg.iterno      = 1;    % paciencia sin mejora 
 
 % Poblaciones por algoritmo (puedes ajustar por algoritmo dentro del .m)
