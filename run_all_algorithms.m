@@ -3,14 +3,14 @@ clear; clc;
 
 %% --- CONFIGURACIÓN GLOBAL ---
 cfg = struct();
-cfg.objfun_name = 'function_leader_follower'; % nombre de la función objetivo
-cfg.Nv          = 3;                                % número de variables
-cfg.xmin        = deg2rad([0 0 0]);
-cfg.xmax        = deg2rad([10  10  10]);
+cfg.objfun_name = 'function_lqr'; % nombre de la función objetivo
+cfg.Nv          = 6;                                % número de variables
+cfg.xmin        = [0 0 0 0 0 0] + 1;
+cfg.xmax        = [10 10 10 10 10 10];
 
 % Corridas e iteraciones
 cfg.T           = 10;     % número de corridas por algoritmo
-cfg.tmax        = 1000;   % iteraciones máximas
+cfg.tmax        = 10;   % iteraciones máximas
 cfg.iterno      = 1;    % paciencia sin mejora 
 
 % Poblaciones por algoritmo (puedes ajustar por algoritmo dentro del .m)
